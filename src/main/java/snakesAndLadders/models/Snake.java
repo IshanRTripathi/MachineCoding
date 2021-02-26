@@ -24,4 +24,9 @@ public class Snake {
     public void setTail(int tail) {
         this.tail = tail;
     }
+
+    @Override
+    public String toString() {
+        return "head=" + head +", tail=" + tail;
+    }
 }

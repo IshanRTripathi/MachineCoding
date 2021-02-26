@@ -24,4 +24,9 @@ public class Ladder {
     public void setEnd(int end) {
         this.end = end;
     }
+
+    @Override
+    public String toString() {
+        return "start=" + start +", end=" + end;
+    }
 }

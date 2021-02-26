@@ -24,4 +24,9 @@ public class Player {
     public void setCurrentPosition(int currentPosition) {
         this.currentPosition = currentPosition;
     }
+
+    @Override
+    public String toString() {
+        return "PlayerName='" + playerName + ", currentPosition=" + currentPosition;
+    }
 }

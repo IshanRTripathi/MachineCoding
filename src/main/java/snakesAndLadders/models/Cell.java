@@ -27,6 +27,6 @@ public class Cell {
 
     @Override
     public String toString() {
-        return type+"";
+        return "id: "+id+", type: "+type;
     }
 }

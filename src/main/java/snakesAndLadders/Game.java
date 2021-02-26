@@ -46,83 +46,26 @@ public class Game {
     private Map<Integer, Snake> snakes;
     private Map<Integer, Ladder> ladders;
     private Map<String, Player> players;
+    private List<Cell> cells;
 
-    public static boolean isGameOver;
+    private boolean isGameOver;
 
-    static Board board;
+    private Board board;
 
-    Game(){
-        isGameOver= false;
-        snakes= new HashMap<>();
-        ladders= new HashMap<>();
-        players= new HashMap<>();
+    public Game(){}
+
+    public Game(Map<Integer,Snake> snakes, Map<Integer, Ladder> ladders, List<Cell> cells, Map<String, Player> players, Board board){
+        this.isGameOver= false;
+        this.snakes= snakes;
+        this.ladders= ladders;
+        this.cells= cells;
+        this.board= board;
+        this.players= players;
     }
 
     public static void main(String[] args) throws InterruptedException {
-        Game game= new Game();
-        board= game.getInputs();
-
-        //game.printBoard(board);
-        game.startGame();
-    }
-
-    private void startGame() throws InterruptedException {
-        GameManager manager= new GameManager(this, board);
-        while(!isGameOver){
-            for(String playerName: players.keySet()){
-                Player currentPlayer= players.get(playerName);
-                System.out.println("\t\t\t\t\t\t\t\t\t"+playerName+"'s turn");
-                manager.playTurn(currentPlayer);
-                isGameOver= currentPlayer.getCurrentPosition()>=100;
-                if(isGameOver)
-                    break;
-                Thread.sleep(2000);
-            }
-        }
-    }
-
-    private Board getInputs() {
-        List<Cell> cells= new ArrayList<>();
-        for(int i=1; i<=100; i++){
-            cells.add(new Cell(i, CellType.empty));
-        }
-        Scanner sc= new Scanner(System.in);
-        int numberOfSnakes= sc.nextInt();
-
-        for(int i=0; i<numberOfSnakes; i++){
-            int head= sc.nextInt();
-            int tail= sc.nextInt();
-            snakes.put(head, new Snake(head, tail));
-            cells.get(head).setType(CellType.snake);
-        }
-
-        int numberOfLadders= sc.nextInt();
-
-        for(int i=0; i<numberOfLadders; i++){
-            int start= sc.nextInt();
-            int end= sc.nextInt();
-            ladders.put(start, new Ladder(start, end));
-            cells.get(start).setType(CellType.ladder);
-        }
-
-        int numberOfPlayers= sc.nextInt();
-        sc.nextLine();
-        for(int i=0; i<numberOfPlayers; i++){
-            String playerName= sc.nextLine();
-            players.put(playerName, new Player(playerName, 0));
-        }
-
-        return new Board(cells);
-    }
-
-    private void printBoard(Board board) {
-        List<Cell> cells= board.getCells();
-        int itr=99;
-        for(int i=1; i<=10; i++){
-            for(int j=1; j<=10; j++){
-                System.out.print(cells.get(itr--));
-            }
-        }
+        GameManager manager= new GameManager();
+        manager.startGame();
     }
 
     public Map<Integer, Snake> getSnakes() {
@@ -147,5 +90,29 @@ public class Game {
 
     public void setPlayers(Map<String, Player> players) {
         this.players = players;
+    }
+
+    public Board getBoard() {
+        return board;
+    }
+
+    public void setBoard(Board board) {
+        this.board = board;
+    }
+
+    public List<Cell> getCells() {
+        return cells;
+    }
+
+    public void setCells(List<Cell> cells) {
+        this.cells = cells;
+    }
+
+    public boolean isGameOver() {
+        return isGameOver;
+    }
+
+    public void setGameOver(boolean gameOver) {
+        isGameOver = gameOver;
     }
 }
