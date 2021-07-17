@@ -66,17 +66,18 @@ public class GameManager {
         CellType cellType= cell.getType();
 
         switch (cellType) {
-            case snake -> {
+            case snake:
                 newPlayerPosition = game.getSnakes().get(currentPlayerPosition).getTail();
                 System.out.print(player.getPlayerName() + " bit by a snake ");
-            }
-            case ladder -> {
+                break;
+
+            case ladder:
                 Map<Integer, Ladder> ladders= game.getLadders();
                 Ladder ladder= ladders.get(currentPlayerPosition);
                 newPlayerPosition = ladder.getEnd();
                 System.out.print(player.getPlayerName() + " takes a ladder ");
-            }
-            default -> newPlayerPosition = currentPlayerPosition;
+                break;
+            default: newPlayerPosition = currentPlayerPosition;
         }
         if(newPlayerPosition != currentPlayerPosition)
             System.out.println("and moves to "+Math.min(newPlayerPosition, 100));

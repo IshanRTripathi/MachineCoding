@@ -1,5 +1,7 @@
 package snakesAndLadders;
 
+import lombok.Getter;
+import lombok.Setter;
 import snakesAndLadders.models.*;
 import snakesAndLadders.service.GameManager;
 
@@ -42,6 +44,9 @@ rishu
 ayush
 dabbu
  */
+
+@Getter
+@Setter
 public class Game {
     private Map<Integer, Snake> snakes;
     private Map<Integer, Ladder> ladders;
@@ -66,53 +71,5 @@ public class Game {
     public static void main(String[] args) throws InterruptedException {
         GameManager manager= new GameManager();
         manager.startGame();
-    }
-
-    public Map<Integer, Snake> getSnakes() {
-        return snakes;
-    }
-
-    public void setSnakes(Map<Integer, Snake> snakes) {
-        this.snakes = snakes;
-    }
-
-    public Map<Integer, Ladder> getLadders() {
-        return ladders;
-    }
-
-    public void setLadders(Map<Integer, Ladder> ladders) {
-        this.ladders = ladders;
-    }
-
-    public Map<String, Player> getPlayers() {
-        return players;
-    }
-
-    public void setPlayers(Map<String, Player> players) {
-        this.players = players;
-    }
-
-    public Board getBoard() {
-        return board;
-    }
-
-    public void setBoard(Board board) {
-        this.board = board;
-    }
-
-    public List<Cell> getCells() {
-        return cells;
-    }
-
-    public void setCells(List<Cell> cells) {
-        this.cells = cells;
-    }
-
-    public boolean isGameOver() {
-        return isGameOver;
-    }
-
-    public void setGameOver(boolean gameOver) {
-        isGameOver = gameOver;
     }
 }
