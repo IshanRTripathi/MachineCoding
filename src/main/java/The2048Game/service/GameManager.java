@@ -39,11 +39,11 @@ public class GameManager {
             input= sc.nextLine();
 
         switch (input) {
-            case "w" -> slideUp();
-            case "s" -> slideDown();
+            case "w": slideUp(); break;
+            case "s": slideDown(); break;
             //case 'a' -> slideLeft();
             //case 'd' -> slideRight();
-            default -> System.out.println("Enter w,a,s,d");
+            default: System.out.println("Enter w,a,s,d");
         }
     }
     private void slideDown() {
